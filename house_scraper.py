@@ -54,7 +54,7 @@ def getting_meta_data(start, end):
 
 
         page = browzer.new_page()
-        for link in tqdm(links,desc=f"scraping listings..."):
+        for link in tqdm(links[:5],desc=f"scraping listings..."):
             try:
                 page.goto(''.join(["https://www.forrent.com",link]))
                 page.wait_for_timeout(1000)
@@ -91,7 +91,7 @@ def getting_meta_data(start, end):
                             **details   }
                             
                         )
-                        
+
             except Exception as e :
                 print(f"having error scaping link {link}",e)
                 errors += 1
@@ -113,7 +113,7 @@ def getting_meta_data(start, end):
 jobs = [
     (1,2),
     (3,5),
-    (5,7)
+    (6,7)
 ]
 
 with ThreadPoolExecutor(max_workers=3) as executer:
